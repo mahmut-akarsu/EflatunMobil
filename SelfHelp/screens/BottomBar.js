@@ -39,7 +39,7 @@ export default function BottomBar() {
                 </View>
               </TouchableOpacity>
               {/*FAVORİLER*/}
-              <TouchableOpacity onPress={()=> navigation.navigate('AnaSayfa')}>
+              <TouchableOpacity onPress={()=> navigation.navigate('Favoriler')}>
                 <View>
                   <Image source={require('../assets/icons/heart.png')} style={{width:30,height:30,marginHorizontal:20}}  />
                   <Text style={{color:"white",marginRight:15,marginHorizontal:3}}>Favorilerim </Text>

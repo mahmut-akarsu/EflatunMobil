@@ -53,7 +53,7 @@ export default function LoginScreen() {
             d="M0,160L48,165.3C96,171,192,181,288,208C384,235,480,277,576,293.3C672,309,768,299,864,266.7C960,235,1056,181,1152,165.3C1248,149,1344,171,1392,181.3L1440,192L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"/>
           </Svg>
         <View className="px-8">
-          <Text className=" text-xl font-semibold font-bold py-1 " style={{color: yesilColors.bg, fontSize:25,fontWeight:"normal", marginBottom:5,}}> Sign Up </Text>
+          <Text className=" text-xl font-semibold font-bold py-1 " style={{color: yesilColors.bg, fontSize:25,fontWeight:"normal", marginBottom:5,}}> Sign In </Text>
             <View className="form space-y-2">
               <Text className=" ml-1" style={{color:"white"}}> Username </Text>
                 <TextInput 
