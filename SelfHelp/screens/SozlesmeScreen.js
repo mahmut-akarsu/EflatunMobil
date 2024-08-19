@@ -18,7 +18,32 @@ export default function Sozlesmecreen() {
   const [checked1, setChecked1] = React.useState(false);
   const [checked2, setChecked2] = React.useState(false);
   const [checked3, setChecked3] = React.useState(false);
+  const [warning,setWarning]=useState('')
   const navigation = useNavigation();
+
+  const checkAndRedirect=()=>{
+    try{
+      if(checked1==false){
+        setWarning("Açık rıza metnini onaylamanız gerekmektedir.")
+      }
+      if(checked2==false){
+        setWarning("Kullanıcı sözleşmesini onaylamanız gerekmektedir.")
+      }
+      if(checked3==false){
+        setWarning("Kvkk metnini onaylamanız gerekmektedir.")
+      }
+      if(checked1!=false && checked2!=false && checked3!=false){
+        navigation.navigate("Soru1")
+      }
+
+    }
+
+    catch(e){
+      console.log(e);
+
+    }
+   
+  }
 
   return (
     <View style={styles.container}>
@@ -96,7 +121,7 @@ export default function Sozlesmecreen() {
     </View>
 
 
-        <TouchableOpacity onPress={()=> navigation.navigate("Soru1")}
+        <TouchableOpacity onPress={checkAndRedirect}
                 className="py-2.5 bg-blue-500 rounded-full mx-8  " style={{backgroundColor: laciColors.bg, marginTop:70,
                   elevation: 5, // Gölge yoğunluğunu ayarlayabilirsiniz
                   shadowColor: '#213a59', // Gölge rengini belirleyebilirsiniz

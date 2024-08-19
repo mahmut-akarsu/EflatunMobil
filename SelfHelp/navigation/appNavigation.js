@@ -23,8 +23,13 @@ import ArkilşDuyEtkisiScreen from '../screens/ArkilşDuyEtkisiScreen';
 import EgzersizlerScreen from '../screens/EgzersizlerScreen';
 import NefesEgzersiziScreen from '../screens/NefesEgzersiziScreen';
 import ProfilScreen from '../screens/ProfilScreen';
+<<<<<<< HEAD
 import HakkimizdaScreen from '../screens/HakkimizdaScreen';
 import iletisimScreen from '../screens/iletisimScreen';
+=======
+import AdSoyadScreen from '../screens/AdSoyadScreen';
+import FavorilerScreen from '../screens/FavorilerScreen';
+>>>>>>> 78ab532eb351403c9f60e76e2f98df2e955bac8d
 
 
 
@@ -78,8 +83,13 @@ export default function AppNavigation() {
           <Stack.Screen name="Egzersizler" options={{headerShown: false}} component={EgzersizlerScreen} />
           <Stack.Screen name="NefesEgzersizi" options={{headerShown: false}} component={NefesEgzersiziScreen} />
           <Stack.Screen name="Profil" options={{headerShown: false}} component={ProfilScreen} />
+<<<<<<< HEAD
           <Stack.Screen name="Hakkimizda" options={{headerShown: false}} component={HakkimizdaScreen} />
           <Stack.Screen name="iletisim" options={{headerShown: false}} component={iletisimScreen} />
+=======
+          <Stack.Screen name="AdSoyad" options={{headerShown: false}} component={AdSoyadScreen} />
+          <Stack.Screen name="Favoriler" options={{headerShown: false}} component={FavorilerScreen} />
+>>>>>>> 78ab532eb351403c9f60e76e2f98df2e955bac8d
         </Stack.Navigator>
       </NavigationContainer>
     )
