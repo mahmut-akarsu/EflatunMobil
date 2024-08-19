@@ -23,6 +23,8 @@ import ArkilşDuyEtkisiScreen from '../screens/ArkilşDuyEtkisiScreen';
 import EgzersizlerScreen from '../screens/EgzersizlerScreen';
 import NefesEgzersiziScreen from '../screens/NefesEgzersiziScreen';
 import ProfilScreen from '../screens/ProfilScreen';
+import HakkimizdaScreen from '../screens/HakkimizdaScreen';
+import iletisimScreen from '../screens/iletisimScreen';
 
 
 
@@ -76,6 +78,8 @@ export default function AppNavigation() {
           <Stack.Screen name="Egzersizler" options={{headerShown: false}} component={EgzersizlerScreen} />
           <Stack.Screen name="NefesEgzersizi" options={{headerShown: false}} component={NefesEgzersiziScreen} />
           <Stack.Screen name="Profil" options={{headerShown: false}} component={ProfilScreen} />
+          <Stack.Screen name="Hakkimizda" options={{headerShown: false}} component={HakkimizdaScreen} />
+          <Stack.Screen name="iletisim" options={{headerShown: false}} component={iletisimScreen} />
         </Stack.Navigator>
       </NavigationContainer>
     )
