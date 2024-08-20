@@ -27,7 +27,8 @@ export default function WelcomeScreen() {
               shadowRadius: 7.84, // Gölge yarıçapı
               borderRadius: 9999,
               height: 60,
-              backgroundColor: 'transparent'}}>
+              backgroundColor: 'transparent',
+              zIndex:2}}>
             <LinearGradient
               colors={['#afbf36', '#555d1b']} // Soldan sağa doğru geçiş yapılacak renkler
               start={{ x: 0, y: 0.5 }}

@@ -32,7 +32,7 @@ const [selectedId, setSelectedId] = useState();
                 <Image source={require('../assets/icons/back.png')} 
                     className="w-4 h-8"  />
             </TouchableOpacity>
-            <Text style={{marginTop:37,fontSize:22,color:"white",marginHorizontal:5}}>Biraz da Seni Tanıyabilir Miyiz?</Text>
+    
             </View>
             
           <Svg 
@@ -40,15 +40,14 @@ const [selectedId, setSelectedId] = useState();
             marginLeft= {0.4}
             width={400}
             viewBox="0 0 1440 320"
-            style={styles.topWavy}
-            
-          >
-            <Path
+            style={styles.topWavy}>
+              <Path
           fill="#213a59"
           fillOpacity="0.2"
           d="M0,128L80,128C160,128,320,128,480,144C640,160,800,192,960,192C1120,192,1280,160,1360,144L1440,128L1440,0L1360,0C1280,0,1120,0,960,0C800,0,640,0,480,0C320,0,160,0,80,0L0,0Z"
           transform="translate(0,40)"/>
             
+        
             <Path
               fill="#213a59"
               d='M0,128L80,128C160,128,320,128,480,144C640,160,800,192,960,192C1120,192,1280,160,1360,144L1440,128L1440,0L1360,0C1280,0,1120,0,960,0C800,0,640,0,480,0C320,0,160,0,80,0L0,0Z'
@@ -58,22 +57,26 @@ const [selectedId, setSelectedId] = useState();
         </View>
         </SafeAreaView>
 
-        <Text style={{fontSize:17,marginTop:80,marginHorizontal:20,marginBottom:-40}}>Lorem ipsum dolor sit amet, consectetur adipiscing elit?</Text>
+        <Text style={{fontSize:20,marginTop:80,marginHorizontal:20,marginBottom:-40}}>Bu duyguları son zamanlarda ne sıklıkta hissediyorsun?</Text>
         <View className=" border border-black  "  style={{
           marginHorizontal:24,
           marginTop:60,
           borderRadius: 10, // Köşe yuvarlaklığını belirleyin
           width:350,
           flexDirection: 'row',
+          
          }}>
-          <Text style={{fontSize:17, marginTop:8,marginRight:255,marginHorizontal:15}}>18-25</Text>
+          <Text style={{fontSize:17, marginTop:8,marginHorizontal:15,marginRight:220}}>Her gün</Text>
+      <View  style={{ Color: checked === 'bir' ? '#afbf36' : 'transparent'}}>
       <RadioButton 
-        style={{marginRight:100}}
+        
         value="bir"
         status={ checked === 'bir' ? 'checked' : 'unchecked' }
         onPress={() => setChecked('bir')}
+        color="#afbf36"
         
-      /></View>
+/></View>
+</View>
       <View className="border border-black"  style={{
         marginHorizontal:24,
         marginTop:20,
@@ -81,12 +84,13 @@ const [selectedId, setSelectedId] = useState();
         width:350,
         flexDirection: 'row',
         }}>
-        <Text style={{fontSize:17, marginTop:8,marginRight:255,marginHorizontal:15}}>26-35</Text>
+        <Text style={{fontSize:17, marginTop:8,marginHorizontal:15,marginRight:136}}>Haftada iki-üç kere</Text>
           
       <RadioButton
         value="iki"
         status={ checked === 'iki' ? 'checked' : 'unchecked' }
         onPress={() => setChecked('iki')}
+        color="#afbf36"
       /></View>
       <View className="border border-black"  style={{
         marginHorizontal:24,
@@ -95,11 +99,13 @@ const [selectedId, setSelectedId] = useState();
         width:350,
         flexDirection: 'row',
         }}>
-          <Text style={{fontSize:17, marginTop:8,marginRight:255,marginHorizontal:15}}>35-40</Text>
+        <Text style={{fontSize:17, marginTop:8,marginHorizontal:15,marginRight:157}}>Haftada bir kere</Text>
+          
       <RadioButton
         value="uc"
         status={ checked === 'uc' ? 'checked' : 'unchecked' }
         onPress={() => setChecked('uc')}
+        color="#afbf36"
       /></View>
       <View className="border border-black"  style={{
         marginHorizontal:24,
@@ -108,12 +114,28 @@ const [selectedId, setSelectedId] = useState();
         width:350,
         flexDirection: 'row',
         }}>
-          <Text style={{fontSize:17, marginTop:8,marginRight:268,marginHorizontal:15}}>40+</Text>
+          <Text style={{fontSize:17, marginTop:8,marginHorizontal:15,marginRight:153}}>Ayda birkaç kere</Text>
       <RadioButton
         value="dort"
         status={ checked === 'dort' ? 'checked' : 'unchecked' }
         onPress={() => setChecked('dort')}
+        color="#afbf36"
       /></View>
+      <View className="border border-black"  style={{
+        marginHorizontal:24,
+        marginTop:20,
+        borderRadius: 10, // Köşe yuvarlaklığını belirleyin
+        width:350,
+        flexDirection: 'row',
+        }}>
+          <Text style={{fontSize:17, marginTop:8,marginHorizontal:15,marginRight:42}}>Nadiren(Ayda bir veya daha az)</Text>
+      <RadioButton
+        value="bes"
+        status={ checked === 'bes' ? 'checked' : 'unchecked' }
+        onPress={() => setChecked('bes')}
+        color="#afbf36"
+      /></View>
+
 <View className="flex-row justify-center"style={{marginTop:200,marginRight:20}}>
           <TouchableOpacity 
           style={{marginRight:-7}}
@@ -122,17 +144,16 @@ const [selectedId, setSelectedId] = useState();
                 <Image source={require('../assets/icons/back.png')} 
                     className="w-4 h-8"  />
             </TouchableOpacity>
-            <Text style={{marginTop:37,fontSize:22,color:"black",marginLeft:10}}>2 of 3</Text>
-            <TouchableOpacity 
+            <Text style={{marginTop:37,fontSize:22,color:"black",marginLeft:10}}>1 of 2</Text>
+            <TouchableOpacity
             style={{marginLeft:5}}
-            onPress={()=> navigation.navigate("AnaSayfa")}
+            onPress={()=> navigation.navigate("Soru2")}
             className="p-3 rounded-tr-2xl rounded-bl-2xl ml-4 py-9">
                 <Image source={require('../assets/icons/ileriYesil.png')} 
                     className="w-4 h-8"  />
             </TouchableOpacity>
             
 </View>
-
     </View>
         
       </View> 
