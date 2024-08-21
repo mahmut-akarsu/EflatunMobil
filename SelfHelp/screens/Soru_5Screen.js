@@ -3,19 +3,33 @@ import { useMemo,Dimensions, StatusBar, StyleSheet, View ,Text, TouchableOpacity
 import Svg, { Path } from 'react-native-svg';
 import { useNavigation } from '@react-navigation/native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { themeColors,laciColors,yesilColors } from '../theme'
 import { useState } from 'react';
-import RadioGroup from 'react-native-radio-buttons-group';
 import { RadioButton } from 'react-native-paper';
+import { Checkbox } from 'react-native-paper';
 
 
 export default function Soru1Screen() {
+  const handleCheck = (item) => {
+    setCheckedItems((prevState) => ({
+      ...prevState,
+      [item]: !prevState[item],
+    }));
+  };
   StatusBar.setHidden(true);
   const navigation = useNavigation();
   const [checked, setChecked] = React.useState('first');
+  const [checkedItems, setCheckedItems] = useState({
+    bir: false,
+    iki: false,
+    uc: false,
+    dort: false,
+    bes: false,
+  });
+  
   
 
 const [selectedId, setSelectedId] = useState();
+
   
   return(
     
@@ -57,7 +71,7 @@ const [selectedId, setSelectedId] = useState();
         </View>
         </SafeAreaView>
 
-        <Text style={{fontSize:20,marginTop:80,marginHorizontal:20,marginBottom:-40}}>Bu duyguları son zamanlarda ne sıklıkta hissediyorsun?</Text>
+        <Text style={{fontSize:20,marginTop:80,marginHorizontal:20,marginBottom:-10}}>Bu duyguları son zamanlarda ne sıklıkta hissediyorsun?</Text>
         <View className=" border border-black  "  style={{
           marginHorizontal:24,
           marginTop:60,
@@ -66,8 +80,8 @@ const [selectedId, setSelectedId] = useState();
           flexDirection: 'row',
           
          }}>
-          <Text style={{fontSize:17, marginTop:8,marginHorizontal:15,marginRight:220}}>Her gün</Text>
-      <View  style={{ Color: checked === 'bir' ? '#afbf36' : 'transparent'}}>
+          <Text style={{fontSize:17, marginTop:8,marginHorizontal:15,marginBottom:10,marginRight:220}}>Her gün</Text>
+      <View  style={{ Color: checked === 'bir' ? '#afbf36' : 'transparent',marginTop:3}}>
       <RadioButton 
         
         value="bir"
@@ -84,13 +98,14 @@ const [selectedId, setSelectedId] = useState();
         width:350,
         flexDirection: 'row',
         }}>
-        <Text style={{fontSize:17, marginTop:8,marginHorizontal:15,marginRight:136}}>Haftada iki-üç kere</Text>
+        <Text style={{fontSize:17, marginTop:8,marginHorizontal:15,marginRight:136,marginBottom:10}}>Haftada iki-üç kere</Text>
           
       <RadioButton
         value="iki"
         status={ checked === 'iki' ? 'checked' : 'unchecked' }
         onPress={() => setChecked('iki')}
         color="#afbf36"
+        
       /></View>
       <View className="border border-black"  style={{
         marginHorizontal:24,
@@ -99,7 +114,7 @@ const [selectedId, setSelectedId] = useState();
         width:350,
         flexDirection: 'row',
         }}>
-        <Text style={{fontSize:17, marginTop:8,marginHorizontal:15,marginRight:157}}>Haftada bir kere</Text>
+        <Text style={{fontSize:17, marginTop:8,marginHorizontal:15,marginRight:157,marginBottom:10}}>Haftada bir kere</Text>
           
       <RadioButton
         value="uc"
@@ -114,7 +129,7 @@ const [selectedId, setSelectedId] = useState();
         width:350,
         flexDirection: 'row',
         }}>
-          <Text style={{fontSize:17, marginTop:8,marginHorizontal:15,marginRight:153}}>Ayda birkaç kere</Text>
+          <Text style={{fontSize:17, marginTop:8,marginHorizontal:15,marginRight:153,marginBottom:10}}>Ayda birkaç kere</Text>
       <RadioButton
         value="dort"
         status={ checked === 'dort' ? 'checked' : 'unchecked' }
@@ -128,7 +143,7 @@ const [selectedId, setSelectedId] = useState();
         width:350,
         flexDirection: 'row',
         }}>
-          <Text style={{fontSize:17, marginTop:8,marginHorizontal:15,marginRight:42}}>Nadiren(Ayda bir veya daha az)</Text>
+          <Text style={{fontSize:17, marginTop:8,marginHorizontal:15,marginRight:42,marginBottom:10}}>Nadiren(Ayda bir veya daha az)</Text>
       <RadioButton
         value="bes"
         status={ checked === 'bes' ? 'checked' : 'unchecked' }
@@ -136,7 +151,7 @@ const [selectedId, setSelectedId] = useState();
         color="#afbf36"
       /></View>
 
-<View className="flex-row justify-center"style={{marginTop:200,marginRight:20}}>
+<View className="flex-row justify-center"style={{marginTop:100,marginRight:20}}>
           <TouchableOpacity 
           style={{marginRight:-7}}
                 onPress={()=> navigation.goBack()}
@@ -144,10 +159,10 @@ const [selectedId, setSelectedId] = useState();
                 <Image source={require('../assets/icons/back.png')} 
                     className="w-4 h-8"  />
             </TouchableOpacity>
-            <Text style={{marginTop:37,fontSize:22,color:"black",marginLeft:10}}>1 of 2</Text>
+            <Text style={{marginTop:37,fontSize:22,color:"black",marginLeft:10}}>5-15</Text>
             <TouchableOpacity
             style={{marginLeft:5}}
-            onPress={()=> navigation.navigate("Soru2")}
+            onPress={()=> navigation.navigate("Soru_6")}
             className="p-3 rounded-tr-2xl rounded-bl-2xl ml-4 py-9">
                 <Image source={require('../assets/icons/ileriYesil.png')} 
                     className="w-4 h-8"  />

@@ -30,6 +30,13 @@ import Soru_2Screen from '../screens/Soru_2Screen';
 import Soru_1Screen from '../screens/Soru_1Screen';
 import Soru_3Screen from '../screens/Soru_3Screen';
 import Soru_4Screen from '../screens/Soru_4Screen';
+import Soru_6Screen from '../screens/Soru_6Screen';
+import Soru_7Screen from '../screens/Soru_7Screen';
+import Soru_8Screen from '../screens/Soru_8Screen';
+import Soru_9Screen from '../screens/Soru_9Screen';
+import Soru_10Screen from '../screens/Soru_10Screen';
+import Soru_11Screen from '../screens/Soru_11Screen';
+import Soru_12Screen from '../screens/Soru_12Screen';
 
 
 
@@ -90,6 +97,14 @@ export default function AppNavigation() {
           <Stack.Screen name="Soru_1" options={{headerShown: false}} component={Soru_1Screen} />
           <Stack.Screen name="Soru_3" options={{headerShown: false}} component={Soru_3Screen} />
           <Stack.Screen name="Soru_4" options={{headerShown: false}} component={Soru_4Screen} />
+          <Stack.Screen name="Soru_6" options={{headerShown: false}} component={Soru_6Screen} />
+          <Stack.Screen name="Soru_7" options={{headerShown: false}} component={Soru_7Screen} />
+          <Stack.Screen name="Soru_8" options={{headerShown: false}} component={Soru_8Screen} />
+          <Stack.Screen name="Soru_9" options={{headerShown: false}} component={Soru_9Screen} />
+          <Stack.Screen name="Soru_10" options={{headerShown: false}} component={Soru_10Screen} />
+          <Stack.Screen name="Soru_11" options={{headerShown: false}} component={Soru_11Screen} />
+          <Stack.Screen name="Soru_12" options={{headerShown: false}} component={Soru_12Screen} />
+
 
         </Stack.Navigator>
       </NavigationContainer>
