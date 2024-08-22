@@ -69,7 +69,7 @@ export default function LoginScreen() {
                   secureTextEntry
                   placeholder=""
                   placeholderTextColor="#778899"/>
-                    <TouchableOpacity onPress={()=> navigation.navigate("Soru1")}
+                    <TouchableOpacity onPress={()=> navigation.navigate("Soru_1")}
                       className="py-2.5  rounded-full"
                       style={{
                       elevation: 5, // Gölge yoğunluğu
