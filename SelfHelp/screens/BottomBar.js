@@ -32,7 +32,7 @@ export default function BottomBar() {
           <View style={styles.bottom}> 
             <View className="flex-row"> 
               {/*ANA SAYFA*/}
-              <TouchableOpacity onPress={()=> navigation.navigate('AnaSayfa')}>
+              <TouchableOpacity onPress={()=> navigation.navigate('DenemeAnasayfa')}>
                 <View style={{marginHorizontal:-6}}>
                   <Image source={require('../assets/icons/home.png')} style={{width:30,height:30,marginHorizontal:20}}  />
                   <Text style={{color:"white", marginRight:15,marginHorizontal:5}}>Ana Sayfa </Text>

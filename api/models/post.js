@@ -1,13 +1,22 @@
 module.exports = (sequelize, DataTypes) => {
-    const Post = sequelize.define('Post', {
+    const Podcast = sequelize.define('Podcast', {
         title: {
             type: DataTypes.STRING,
-            allowNull: false
+            allowNull: false,
         },
-        content: {
-            type: DataTypes.TEXT
-        }
+        description: {
+            type: DataTypes.TEXT,
+        },
+        cardImageUrl: {
+            type: DataTypes.STRING,
+        },
+        imageUrl: {
+            type: DataTypes.STRING,
+        },
+        source: {
+            type: DataTypes.STRING,
+        },
     });
 
-    return Post;
+    return Podcast;
 };

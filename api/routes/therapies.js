@@ -5,7 +5,16 @@ const router = express.Router();
 // Create a new therapy
 router.post('/', async (req, res) => {
     try {
-        const therapy = await Therapy.create(req.body);
+        const therapy = await Therapy.create(req.body, {
+            include: [{
+                model: Section,
+                as: 'sections',
+                include: [{
+                    model: Step,
+                    as: 'steps'
+                }]
+            }]
+        });
         res.status(201).json(therapy);
     } catch (error) {
         res.status(400).json({ error: 'Failed to create therapy' });

@@ -13,12 +13,6 @@ import { LinearGradient } from 'expo-linear-gradient';
 import BottomBar from './BottomBar';
 
 
-
-
-
-
-
-
 export default function AnaSayfaScreen() {
   StatusBar.setHidden(true);
   const navigation = useNavigation();
@@ -87,8 +81,6 @@ export default function AnaSayfaScreen() {
               </View>
                       </LinearGradient>
             </TouchableOpacity>
-            
-
 
 
     <View>
@@ -122,7 +114,8 @@ export default function AnaSayfaScreen() {
             {currentStep >= 3 && <Text style={styles.checkmark}>✓</Text>}
             
           </TouchableOpacity>
-        </View></View>
+        </View>
+        </View>
       
 
       <View style={styles.sectionContainer3} >

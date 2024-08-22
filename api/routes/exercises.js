@@ -1,71 +1,92 @@
 const express = require('express');
-const { Exercise } = require('../models');
 const router = express.Router();
+const { Exercise, ExerciseStep, sequelize } = require('../models');
 
-// Create a new exercise
-router.post('/', async (req, res) => {
-    try {
-        const exercise = await Exercise.create(req.body);
-        res.status(201).json(exercise);
-    } catch (error) {
-        res.status(400).json({ error: 'Failed to create exercise' });
-    }
-});
-
-// Get all exercises
+// Tüm egzersizleri getir
 router.get('/', async (req, res) => {
     try {
-        const exercises = await Exercise.findAll();
+        const exercises = await Exercise.findAll({
+            include: [{ model: ExerciseStep, as: 'exerciseSteps' }],
+        });
         res.json(exercises);
     } catch (error) {
-        res.status(500).json({ error: 'Failed to retrieve exercises' });
+        res.status(500).json({ error: 'Egzersizler getirilemedi' });
     }
 });
 
-// Get an exercise by ID
+// Belirli bir egzersizi getir
 router.get('/:id', async (req, res) => {
     try {
-        const exercise = await Exercise.findByPk(req.params.id);
+        const exercise = await Exercise.findByPk(req.params.id, {
+            include: [{ model: ExerciseStep, as: 'exerciseSteps' }],
+        });
         if (exercise) {
             res.json(exercise);
         } else {
-            res.status(404).json({ error: 'Exercise not found' });
+            res.status(404).json({ error: 'Egzersiz bulunamadı' });
         }
     } catch (error) {
-        res.status(500).json({ error: 'Failed to retrieve exercise' });
+        res.status(500).json({ error: 'Egzersiz getirilemedi' });
     }
 });
 
-// Update an exercise by ID
+// Yeni bir egzersiz oluştur
+router.post('/', async (req, res) => {
+    const transaction = await sequelize.transaction();
+    try {
+        // Create the exercise
+        const { name, description, cardImageUrl, imageUrl, steps } = req.body;
+        const exercise = await Exercise.create({
+            name,
+            description,
+            cardImageUrl,
+            imageUrl
+        }, { transaction });
+
+        // Create associated steps
+        if (steps && steps.length > 0) {
+            const stepsWithExerciseId = steps.map(step => ({
+                ...step,
+                exerciseId: exercise.id
+            }));
+            await ExerciseStep.bulkCreate(stepsWithExerciseId, { transaction });
+        }
+
+        await transaction.commit();
+        res.status(201).json(exercise);
+    } catch (error) {
+        await transaction.rollback();
+        res.status(400).json({ error: 'Egzersiz ve adımlar oluşturulamadı' });
+    }
+});
+
+// Bir egzersizi güncelle
 router.put('/:id', async (req, res) => {
     try {
-        const [updated] = await Exercise.update(req.body, {
-            where: { id: req.params.id }
-        });
-        if (updated) {
-            const updatedExercise = await Exercise.findByPk(req.params.id);
-            res.json(updatedExercise);
+        const exercise = await Exercise.findByPk(req.params.id);
+        if (exercise) {
+            await exercise.update(req.body);
+            res.json(exercise);
         } else {
-            res.status(404).json({ error: 'Exercise not found' });
+            res.status(404).json({ error: 'Egzersiz bulunamadı' });
         }
     } catch (error) {
-        res.status(400).json({ error: 'Failed to update exercise' });
+        res.status(500).json({ error: 'Egzersiz güncellenemedi' });
     }
 });
 
-// Delete an exercise by ID
+// Bir egzersizi sil
 router.delete('/:id', async (req, res) => {
     try {
-        const deleted = await Exercise.destroy({
-            where: { id: req.params.id }
-        });
-        if (deleted) {
-            res.status(204).end();
+        const exercise = await Exercise.findByPk(req.params.id);
+        if (exercise) {
+            await exercise.destroy();
+            res.json({ message: 'Egzersiz silindi' });
         } else {
-            res.status(404).json({ error: 'Exercise not found' });
+            res.status(404).json({ error: 'Egzersiz bulunamadı' });
         }
     } catch (error) {
-        res.status(500).json({ error: 'Failed to delete exercise' });
+        res.status(500).json({ error: 'Egzersiz silinemedi' });
     }
 });
 

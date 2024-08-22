@@ -8,6 +8,7 @@ const exerciseRoutes = require('./routes/exercises');
 const therapyRoutes = require('./routes/therapies');
 const sectionRoutes = require('./routes/sections');
 const stepRoutes = require('./routes/steps');
+const exerciseStepRoutes = require('./routes/exerciseSteps');
 
 require('dotenv').config();
 

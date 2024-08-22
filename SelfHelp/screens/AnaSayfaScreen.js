@@ -11,17 +11,12 @@ import HeartButton from './HeratButton';
 import HeartButton3 from './HeartButton3';
 import BottomBar from './BottomBar';
 
-
-
-
-
 export default function AnaSayfaScreen() {
   StatusBar.setHidden(true);
   const navigation = useNavigation();
   const [checked, setChecked] = React.useState('first');
   const [selectedId, setSelectedId] = useState();
-  
-  
+ 
   return(
     <View style={styles.container}>
       <View style={styles.top}>

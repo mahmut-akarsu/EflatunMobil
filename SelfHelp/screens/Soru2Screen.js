@@ -125,7 +125,7 @@ const [selectedId, setSelectedId] = useState();
             <Text style={{marginTop:37,fontSize:22,color:"black",marginLeft:10}}>2 of 3</Text>
             <TouchableOpacity 
             style={{marginLeft:5}}
-            onPress={()=> navigation.navigate("AnaSayfa")}
+            onPress={()=> navigation.navigate("DenemeAnasayfa")}
             className="p-3 rounded-tr-2xl rounded-bl-2xl ml-4 py-9">
                 <Image source={require('../assets/icons/ileriYesil.png')} 
                     className="w-4 h-8"  />

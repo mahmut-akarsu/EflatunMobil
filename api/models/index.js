@@ -16,6 +16,7 @@ db.Exercise = require('./exercise')(sequelize, Sequelize);
 db.Therapy = require('./therapy')(sequelize, Sequelize);
 db.Section = require('./section')(sequelize, Sequelize);
 db.Step = require('./step')(sequelize, Sequelize);
+db.ExerciseStep = require('./exerciseStep')(sequelize, Sequelize);
 
 Object.keys(db).forEach(modelName => {
     if (db[modelName].associate) {
