@@ -4,6 +4,7 @@ import Svg, { Path } from 'react-native-svg';
 import { useNavigation } from '@react-navigation/native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import BottomBar from './BottomBar';
+import { baseApi } from '../config';
 
 export default function DenemeAnasayfaScreen() {
   StatusBar.setHidden(true);
@@ -18,10 +19,10 @@ export default function DenemeAnasayfaScreen() {
     const fetchData = async () => {
       try {
         const [therapyResponse, exerciseResponse, podcastResponse, postResponse] = await Promise.all([
-          fetch('http://192.168.1.2:3000/therapies'),
-          fetch('http://192.168.1.2:3000/exercises'),
-          fetch('http://192.168.1.2:3000/podcasts'),
-          fetch('http://192.168.1.2:3000/posts')
+          fetch(`${baseApi}/therapies`),
+          fetch(`${baseApi}/exercises`),
+          fetch(`${baseApi}/podcasts`),
+          fetch(`${baseApi}/posts`)
         ]);
 
         const therapiesData = await therapyResponse.json();
@@ -155,7 +156,7 @@ export default function DenemeAnasayfaScreen() {
         <ScrollView horizontal={true} contentContainerStyle={styles.horizontalScrollView}>
           <View style={styles.cardsContainer}>
             {posts.map((post) => (
-              <TouchableOpacity key={post.id} onPress={() => navigation.navigate('PostDetail', { id: post.id })}>
+              <TouchableOpacity key={post.id} onPress={() => navigation.navigate('PostTemplateScreen', { id: post.id })}>
                 <View style={styles.imageGolge}>
                   <Image
                     source={{ uri: post.imageUrl }}

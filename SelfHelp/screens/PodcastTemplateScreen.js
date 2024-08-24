@@ -6,6 +6,8 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import BottomBar from './BottomBar';
 import { Audio } from 'expo-av';
+import HeartButton2 from './HeartButton2';
+import { baseApi } from '../config';
 
 export default function PodcastTemplateScreen() {
   const navigation = useNavigation();
@@ -22,7 +24,7 @@ export default function PodcastTemplateScreen() {
 
   useEffect(() => {
     if (id) {
-      fetch(`http://192.168.1.2:3000/podcasts/${id}`)
+      fetch(`${baseApi}/podcasts/${id}`)
         .then(response => response.json())
         .then(data => setPodcast(data))
         .catch(error => console.error('Error fetching podcast:', error));
@@ -119,7 +121,6 @@ export default function PodcastTemplateScreen() {
           </View>
         </SafeAreaView>
 
-        {/* {{ uri: podcast.imageUrl }} bu kısımda apiden ana fotoğrafı alıyoruz. podcast sayfasında üstte görünen fotoğraf buradan geliyor. */}
         <View style={[styles.imageGolge, { alignItems: 'center' }]}>
           <Image source={{ uri: podcast.imageUrl }} style={{
             width: 344,
@@ -133,13 +134,9 @@ export default function PodcastTemplateScreen() {
           }} />
         </View>
 
-        {/* <Text style={styles.podcastTitle}>{podcast.title}</Text> bu kısımda apiden başlığı alıyoruz. podcast sayfasında yer alan 
-        "Psikolojik dayanıklılık" vb. başlıklar
-        buradan aldığımız bilgilerden geliyor" . */}
-
         <View style={{ flexDirection: 'row' }}>
           <Text style={styles.podcastTitle}>{podcast.title}</Text>
-          {/* <HeartButton2 /> */}
+          <HeartButton2 contentId={id} contentType="podcast" />
         </View>
 
         <View style={styles.progressContainer}>
@@ -172,8 +169,6 @@ export default function PodcastTemplateScreen() {
           </TouchableOpacity>
         </View>
 
-
-        {/* açıklama yazısını aldığımız kısım= */ }
         <Text style={styles.descriptionText}>
           {podcast.description}
         </Text>

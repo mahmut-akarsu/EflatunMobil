@@ -43,16 +43,16 @@ export default function AdSoyadScreen() {
       <View style={styles.top}>
         <SafeAreaView className="flex">
           <View style={styles.box}>
-            <TouchableOpacity 
+            <TouchableOpacity
               onPress={() => navigation.goBack()}
               className="p-2 rounded-tr-2xl rounded-bl-2xl ml-4">
-              <Image 
-                source={require('../assets/icons/backlaci.png')} 
+              <Image
+                source={require('../assets/icons/backlaci.png')}
                 style={{ marginTop: 10 }}
-                className="w-5 h-10"  
+                className="w-5 h-10"
               />
             </TouchableOpacity>
-            <Svg 
+            <Svg
               height={90}
               marginLeft={0.4}
               width={400}
@@ -70,8 +70,8 @@ export default function AdSoyadScreen() {
       <Text style={{ paddingHorizontal: 30, paddingTop: 50, fontSize: 17, textAlign: 'justify', fontWeight: "bold" }}>
         Açık Arıza Metni
       </Text>
-      <Text 
-        className="text-black text-3x1 text-center" 
+      <Text
+        className="text-black text-3x1 text-center"
         style={{ paddingHorizontal: 30, paddingTop: 15, fontSize: 14, textAlign: 'justify' }}>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque eu condimentum ante, eget commodo ante. Fusce aliquet, neque vitae luctus commodo, ante tortor tempor odio, eu tempor dui ipsum id sapien. Morbi ut lorem ut elit auctor hendrerit. Cras in purus nec arcu accumsan accumsan id non felis. Nullam vulputate magna vitae luctus pellentesque. Phasellus non sapien in turpis efficitur commodo.
       </Text>
@@ -92,7 +92,7 @@ export default function AdSoyadScreen() {
       />
 
       <View className="flex-row space-x-1 px-7 pt-8">
-        <Checkbox 
+        <Checkbox
           status={checked1 ? 'checked' : 'unchecked'}
           onPress={() => setChecked1(!checked1)}
         />
@@ -126,7 +126,7 @@ export default function AdSoyadScreen() {
       </View>
 
       <TouchableOpacity onPress={checkAndRedirect}
-        className="py-2.5 rounded-full mx-8" 
+        className="py-2.5 rounded-full mx-8"
         style={{
           backgroundColor: laciColors.bg,
           marginTop: 70,
@@ -151,8 +151,8 @@ export default function AdSoyadScreen() {
         </Text>
       </TouchableOpacity>
 
-      <Image  
-        source={require('../assets/images/uygulama.png')} 
+      <Image
+        source={require('../assets/images/uygulama.png')}
         className="flex-row justify-center"
         style={{ width: 350, height: 200, marginTop: -15, marginHorizontal: 25 }}
       />

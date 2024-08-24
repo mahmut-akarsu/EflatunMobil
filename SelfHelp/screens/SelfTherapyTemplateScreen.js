@@ -4,6 +4,8 @@ import { useNavigation, useRoute } from '@react-navigation/native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { LinearGradient } from 'expo-linear-gradient';
 import BottomBar from './BottomBar';
+import HeartButton2 from './HeartButton2';
+import { baseApi } from '../config';
 
 export default function SelfTherapyTemplateScreen() {
     StatusBar.setHidden(true);
@@ -30,7 +32,7 @@ export default function SelfTherapyTemplateScreen() {
     useEffect(() => {
         if (id) {
             // API'den terapi detayını almak için fetch işlemi
-            fetch(`http://192.168.1.2:3000/therapies/${id}`)
+            fetch(`${baseApi}/therapies/${id}`)
                 .then(response => response.json())
                 .then(data => {
                     setTherapy(data);
@@ -122,9 +124,12 @@ export default function SelfTherapyTemplateScreen() {
                                 <Image source={require('../assets/icons/time.png')} style={{ width: 24, height: 24, marginHorizontal: 42, marginTop: 8 }} />
                                 <Text style={{ color: "white", fontSize: 10, marginHorizontal: 39, marginTop: 2 }}>5.Etkinlik</Text>
                             </View>
-                            <View>
+                            {/* <View>
                                 <Image source={require('../assets/icons/clipboard.png')} style={{ width: 28, height: 28, marginHorizontal: -1, marginTop: 5 }} />
                                 <Text style={{ color: "white", fontSize: 10, marginHorizontal: -10, marginTop: 1 }}>20. Ornek</Text>
+                            </View> */}
+                            <View>
+                            <HeartButton2 contentId={id} contentType="therapy" />
                             </View>
                         </View>
                     </LinearGradient>

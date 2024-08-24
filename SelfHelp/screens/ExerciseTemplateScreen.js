@@ -3,6 +3,7 @@ import { useNavigation } from '@react-navigation/native';
 import { View, Text, TouchableOpacity, Image, ImageBackground, ScrollView, StyleSheet, StatusBar } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import BottomBar from './BottomBar';
+import { baseApi } from '../config';
 
 export default function NefesEgzersiziScreen({ route }) {
     const { exerciseId } = route.params;
@@ -13,7 +14,7 @@ export default function NefesEgzersiziScreen({ route }) {
     const totalSteps = Array.isArray(exercise?.exerciseSteps) ? exercise.exerciseSteps.length : 0;
 
     useEffect(() => {
-        fetch(`http://192.168.1.2:3000/exercises/${exerciseId}`)
+        fetch(`${baseApi}/exercises/${exerciseId}`)
             .then((response) => response.json())
             .then((data) => setExercise(data))
             .catch((error) => console.error('Error fetching exercise data:', error));

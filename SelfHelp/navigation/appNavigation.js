@@ -41,6 +41,7 @@ import DenemeAnasayfaScreen from '../screens/DenemeAnasayfaScreen';
 import SelfTherapyTemplateScreen from '../screens/SelfTherapyTemplateScreen';
 import ExerciseTemplateScreen from '../screens/ExerciseTemplateScreen'
 import PodcastTemplateScreen from '../screens/PodcastTemplateScreen'
+import PostTemplateScreen from '../screens/PostTemplateScreen'
 
 
 
@@ -109,6 +110,7 @@ export default function AppNavigation() {
           <Stack.Screen name="SelfTherapyTemplateScreen" options={{ headerShown: false }} component={SelfTherapyTemplateScreen} />
           <Stack.Screen name="ExerciseTemplateScreen" options={{ headerShown: false }} component={ExerciseTemplateScreen} />
           <Stack.Screen name="PodcastTemplateScreen" options={{ headerShown: false }} component={PodcastTemplateScreen} />
+          <Stack.Screen name="PostTemplateScreen" options={{ headerShown: false }} component={PostTemplateScreen} />
 
 
 

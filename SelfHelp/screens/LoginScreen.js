@@ -1,22 +1,61 @@
-import { View, ScrollView, Text, TouchableOpacity, Image, TextInput, Dimensions, StatusBar, StyleSheet } from 'react-native'
-import React from 'react'
+import { View, ScrollView, Text, TouchableOpacity, Image, TextInput, Dimensions, StatusBar, StyleSheet, Alert } from 'react-native'
+import React, { useState } from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { ArrowLeftIcon } from 'react-native-heroicons/solid'
 import { laciColors, themeColors, yesilColors } from '../theme'
 import { useNavigation } from '@react-navigation/native'
 import Svg, { Path } from 'react-native-svg';
 import { LinearGradient } from 'expo-linear-gradient';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { baseApi } from '../config'
 
 
 
 export default function LoginScreen() {
   StatusBar.setHidden(true);
-  const [checked, setChecked] = React.useState(false);
   const navigation = useNavigation();
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+  const handleSignIn = async () => {
+    if (!email || !password) {
+      Alert.alert("Hata", "Email ve şifre alanları boş bırakılamaz!");
+      return;
+    }
+
+    try {
+      const response = await fetch(`${baseApi}/auth/login`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          email,
+          password,
+        }),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        // Token'ı AsyncStorage'a kaydet
+        await AsyncStorage.setItem('token', data.data.token);
+        //emaili al
+        await AsyncStorage.setItem('email', email);
+
+        Alert.alert("Başarılı", "Giriş başarılı!");
+        navigation.navigate("DenemeAnasayfa");
+      } else {
+        Alert.alert("Hata", data.message || "Giriş başarısız!");
+      }
+    } catch (error) {
+      Alert.alert("Hata", "Bir hata oluştu. Lütfen tekrar deneyin.");
+    }
+  };
 
 
   return (
-    <ScrollView>{/*YUKARI-AŞAĞI KAYDIRMA BAŞLANGIÇ*/}
+    <ScrollView>
       <View className="flex-1 bg-white" >
         <SafeAreaView className="flex" >
           <View className="flex-row justify-start">
@@ -55,11 +94,14 @@ export default function LoginScreen() {
             <View className="px-8">
               <Text className=" text-xl font-semibold font-bold py-1 " style={{ color: yesilColors.bg, fontSize: 25, fontWeight: "normal", marginBottom: 5, }}> Sign In </Text>
               <View className="form space-y-2">
-                <Text className=" ml-1" style={{ color: "white" }}> Username </Text>
+                <Text className=" ml-1" style={{ color: "white" }}> Email </Text>
                 <TextInput
                   className="p-2.5 bg-gray-100  rounded-full mb-3 border " style={{ backgroundColor: laciColors.bg, borderColor: "#294666", }}
                   placeholder="martin_eden"
-                  placeholderTextColor="#778899" />
+                  placeholderTextColor="#778899"
+                  value={email}
+                  onChangeText={setEmail}
+                />
                 <TouchableOpacity onPress={() => navigation.navigate("Forgot")} className="flex mt-7">
                   <Text className=" text-right" style={{ color: "white", textDecorationLine: 'underline', marginBottom: -20, marginTop: -4 }}>Forgot?</Text>
                 </TouchableOpacity>
@@ -68,21 +110,24 @@ export default function LoginScreen() {
                   className="p-2.5 bg-gray-100  rounded-full border " style={{ backgroundColor: laciColors.bg, marginBottom: 20, borderColor: "#294666" }}
                   secureTextEntry
                   placeholder=""
-                  placeholderTextColor="#778899" />
-                <TouchableOpacity onPress={() => navigation.navigate("DenemeAnasayfa")}
+                  placeholderTextColor="#778899"
+                  value={password}
+                  onChangeText={setPassword}
+                />
+                <TouchableOpacity onPress={handleSignIn}
                   className="py-2.5  rounded-full"
                   style={{
-                    elevation: 5, // Gölge yoğunluğu
-                    shadowColor: '#afbf36', // Gölge rengi
-                    shadowOffset: { width: 3, height: 6 }, // Gölge konumunu 
-                    shadowOpacity: 1, // Gölge opaklığı
-                    shadowRadius: 7.84, // Gölge yarıçapı
+                    elevation: 5,
+                    shadowColor: '#afbf36',
+                    shadowOffset: { width: 3, height: 6 },
+                    shadowOpacity: 1,
+                    shadowRadius: 7.84,
                     borderRadius: 9999,
                     height: 60,
                     backgroundColor: 'transparent'
                   }}>
                   <LinearGradient
-                    colors={['#afbf36', '#555d1b']} // Soldan sağa doğru geçiş yapılacak renkler
+                    colors={['#afbf36', '#555d1b']}
                     start={{ x: 0, y: 0.5 }}
                     end={{ x: 1, y: 0.5 }}
                     style={{ borderRadius: 9999, height: 50, marginTop: -7 }}>
@@ -116,9 +161,9 @@ export default function LoginScreen() {
         </View>
       </View>
     </ScrollView>
-
   )
 }
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,

@@ -1,30 +1,29 @@
-require('dotenv').config();
+require('dotenv').config({ path: 'C:/Users/Mahmut/Desktop/Eflatun Uygulaması/api/.env' });
 
 const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-const nodemailer = require(`nodemailer`);
+const nodemailer = require('nodemailer');
 const { User } = require('../models');
 const Response = require('../lib/Response');
-const Enum = require(`../lib/Enum`);
-const CustomError = require(`../lib/CustomError`);
+const Enum = require('../lib/Enum');
+const CustomError = require('../lib/CustomError');
 
-
-
-// Register
+// Kullanıcı Kaydı
 router.post('/register', async (req, res) => {
     const { email, password } = req.body;
     try {
-        const hasUser = await User.findOne({ email });
+        const hasUser = await User.findOne({ where: { email } });
 
-        if (hasUser) throw new CustomError(Enum.HTTP_CODES.CONFLICT, "User already exists", "A user with this email address already exists.");
+        if (hasUser) {
+            return res.status(Enum.HTTP_CODES.CONFLICT).json({ error: "A user with this email address already exists." });
+        }
 
         const hashedPassword = await bcrypt.hash(password, 10);
+        const user = await User.create({ email, password: hashedPassword, isEnabled: false });
 
-        const user = await User.create({ email, password: hashedPassword });
-
-        const token = jwt.sign({ id: user.id }, process.env.JWT_SECRET);
+        const token = jwt.sign({ id: user.id }, process.env.JWT_SECRET, { expiresIn: '1h' });
 
         const transporter = nodemailer.createTransport({
             service: 'Gmail',
@@ -43,28 +42,32 @@ router.post('/register', async (req, res) => {
 
         await transporter.sendMail(mailOptions);
 
-        let successResponse = Response.successResponse({ success: true }, Enum.HTTP_CODES.CREATED);
-        res.status(successResponse.code).json(successResponse);
+        res.status(Enum.HTTP_CODES.CREATED).json({ message: "Registration successful, please verify your email." });
     } catch (err) {
-        let errorResponse = Response.errorResponse(err)
-        res.status(errorResponse.code).json(errorResponse);
+        res.status(Enum.HTTP_CODES.INTERNAL_SERVER_ERROR).json({ error: "Internal Server Error" });
     }
 });
 
-// Login
+// Giriş
 router.post('/login', async (req, res) => {
     const { email, password } = req.body;
     try {
         const user = await User.findOne({ where: { email } });
 
-        if (!user) throw new CustomError(Enum.HTTP_CODES.BAD_REQUEST, "Login error", "Incorrect email or password.");
+        if (!user) {
+            throw new CustomError(Enum.HTTP_CODES.BAD_REQUEST, "Login error", "Incorrect email or password.");
+        }
 
         const isMatch = await bcrypt.compare(password, user.password);
-        if (!isMatch) throw new CustomError(Enum.HTTP_CODES.BAD_REQUEST, "Login error", "Incorrect email or password.");
+        if (!isMatch) {
+            throw new CustomError(Enum.HTTP_CODES.BAD_REQUEST, "Login error", "Incorrect email or password.");
+        }
 
-        if (!user.isEnabled) throw new CustomError(Enum.HTTP_CODES.BAD_REQUEST, "Verification error", "Please verify your account.");
+        if (!user.isEnabled) {
+            throw new CustomError(Enum.HTTP_CODES.BAD_REQUEST, "Verification error", "Please verify your account.");
+        }
 
-        const token = jwt.sign({ id: user.id }, process.env.JWT_SECRET);
+        const token = jwt.sign({ id: user.id }, process.env.JWT_SECRET, { expiresIn: '1h' });
 
         res.json(Response.successResponse({ token }));
     } catch (err) {
@@ -73,12 +76,12 @@ router.post('/login', async (req, res) => {
     }
 });
 
-router.get(`/verify-email`, async (req, res) => {
+// E-posta Doğrulama
+router.get('/verify-email', async (req, res) => {
     const { token } = req.query;
 
     if (!token) {
-        let errorResponse = Response.errorResponse(new CustomError(Enum.HTTP_CODES.BAD_REQUEST, "Verification error", "Invalid or missing verification token."));
-        return res.status(errorResponse.code).json(errorResponse);
+        return res.status(Enum.HTTP_CODES.BAD_REQUEST).json({ error: "Invalid or missing verification token." });
     }
 
     try {

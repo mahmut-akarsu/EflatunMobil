@@ -1,3 +1,4 @@
+require('dotenv').config({ path: 'C:/Users/Mahmut/Desktop/Eflatun Uygulaması/api/.env' });
 const express = require('express');
 const bodyParser = require('body-parser');
 const { sequelize } = require('./models');
@@ -9,12 +10,13 @@ const therapyRoutes = require('./routes/therapies');
 const sectionRoutes = require('./routes/sections');
 const stepRoutes = require('./routes/steps');
 const exerciseStepRoutes = require('./routes/exerciseSteps');
+const favoriteRoutes = require('./routes/favorites');
 
-require('dotenv').config();
 
 const app = express();
 app.use(bodyParser.json());
-
+app.use(express.json());
+app.use('/favorites', favoriteRoutes);
 app.use('/auth', authRoutes);
 app.use('/podcasts', podcastRoutes);
 app.use('/posts', postRoutes);
@@ -22,6 +24,7 @@ app.use('/exercises', exerciseRoutes);
 app.use('/therapies', therapyRoutes);
 app.use('/sections', sectionRoutes);
 app.use('/steps', stepRoutes);
+app.use('/exerciseSteps',exerciseStepRoutes)
 
 
 const PORT = process.env.PORT || 3000;

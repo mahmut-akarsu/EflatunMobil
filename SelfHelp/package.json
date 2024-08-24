@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@expo/vector-icons": "^14.0.2",
+    "@react-native-async-storage/async-storage": "^2.0.0",
     "@react-native-community/checkbox": "^0.5.17",
     "@react-native-community/slider": "^4.5.2",
     "@react-navigation/bottom-tabs": "^6.5.7",
@@ -27,6 +28,7 @@
     "react-native": "0.71.14",
     "react-native-awesome-slider": "^2.5.3",
     "react-native-check-box": "^2.1.7",
+    "react-native-dotenv": "^3.4.11",
     "react-native-elements": "^3.4.3",
     "react-native-heroicons": "^3.2.0",
     "react-native-linear-gradient": "^2.8.3",

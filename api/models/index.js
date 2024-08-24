@@ -1,3 +1,4 @@
+require('dotenv').config();
 const { Sequelize } = require('sequelize');
 const sequelize = new Sequelize({
     dialect: 'sqlite',
@@ -17,6 +18,8 @@ db.Therapy = require('./therapy')(sequelize, Sequelize);
 db.Section = require('./section')(sequelize, Sequelize);
 db.Step = require('./step')(sequelize, Sequelize);
 db.ExerciseStep = require('./exerciseStep')(sequelize, Sequelize);
+db.Favorite = require('./Favorite')(sequelize, Sequelize.DataTypes);
+
 
 Object.keys(db).forEach(modelName => {
     if (db[modelName].associate) {
