@@ -47,8 +47,10 @@ export default function LoginScreen() {
         navigation.navigate("DenemeAnasayfa");
       } else {
         Alert.alert("Hata", data.message || "Giriş başarısız!");
+        console.log("sıkıntı var");
       }
     } catch (error) {
+      console.log("sıkıntı var:" + error);
       Alert.alert("Hata", "Bir hata oluştu. Lütfen tekrar deneyin.");
     }
   };

@@ -47,7 +47,7 @@ export default function FavorilerScreen() {
             }
 
             try {
-              const detailResponse = await fetch(`http://192.168.1.4:3000/${endpoint}`);
+              const detailResponse = await fetch(`${baseApi}/${endpoint}`);
               return await detailResponse.json();
             } catch (error) {
               console.error('Error fetching details:', error);

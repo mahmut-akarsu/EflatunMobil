@@ -32,7 +32,11 @@ export default function AnaSayfaScreen() {
     password: '********',
   });
 
- 
+  const handleLogout = async () => {
+    await AsyncStorage.removeItem('token')
+    await AsyncStorage.removeItem('email')
+    navigation.navigate('Login')
+  }
   useEffect(() => {
     const getEmail = async () => {
       try {
@@ -173,14 +177,14 @@ export default function AnaSayfaScreen() {
           </View>
         </View>
         <View>
-          <View className="mt-2">
+          {/* <View className="mt-2">
             <TouchableOpacity onPress={() => navigation.navigate('AnaSayfa')}>
               <View className="flex-row">
                 <Image style={{ height: 40, width: 40, marginHorizontal: 20, marginTop: 15 }} source={require('../assets/icons/clip-board-laci.png')} />
                 <Text style={{ marginHorizontal: -10, marginTop: 24, fontSize: 17 }}>Terapilerim</Text>
               </View>
             </TouchableOpacity>
-          </View>
+          </View> */}
           <View className="mt-2">
             <TouchableOpacity onPress={() => navigation.navigate('Hakkimizda')}>
               <View className="flex-row">
@@ -205,6 +209,16 @@ export default function AnaSayfaScreen() {
               </View>
             </TouchableOpacity>
           </View>
+          <View className="mt-2">
+            <TouchableOpacity onPress={handleLogout}>
+              <View className="flex-row">
+                <Image style={{ height: 35, width: 35, marginHorizontal: 23, marginTop: 15 }} source={require('../assets/logout.png')} />
+                <Text style={{ marginHorizontal: -10, marginTop: 20, fontSize: 17 }}>Çıkış yap</Text>
+              </View>
+            </TouchableOpacity>
+          </View>
+
+
         </View>
       </ScrollView>{/*YUKARI-AŞAĞI KAYDIRMA BİTİŞ(TÜM EKRAN)*/}
 

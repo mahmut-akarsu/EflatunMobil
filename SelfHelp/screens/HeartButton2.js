@@ -31,9 +31,9 @@ const HeartButton2 = ({ contentId, contentType }) => {
     try {
       const token = await AsyncStorage.getItem('token');
       if (liked) {
-        await axios.post('http://192.168.1.4:3000/favorites/remove', { token, contentId, contentType });
+        await axios.post(`${baseApi}/favorites/remove`, { token, contentId, contentType });
       } else {
-        await axios.post('http://192.168.1.4:3000/favorites/add', { token, contentId, contentType });
+        await axios.post(`${baseApi}/favorites/add`, { token, contentId, contentType });
       }
       setLiked(!liked);
     } catch (error) {
