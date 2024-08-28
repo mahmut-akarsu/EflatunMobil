@@ -4,9 +4,11 @@ import { useNavigation } from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import BottomBar from './BottomBar';
 import { baseApi } from '../config';
+import { useRoute } from '@react-navigation/native';
 
 export default function FavorilerScreen() {
   const navigation = useNavigation();
+  const route = useRoute(); // Geçerli rotayı alır
   const [favoriler, setFavoriler] = useState({
     selfTerapiler: [],
     egzersizler: [],
@@ -139,7 +141,7 @@ export default function FavorilerScreen() {
         </View>
       </ScrollView>
       <View>
-        <BottomBar />
+        <BottomBar currentRoute={route.name} />
       </View>
     </View>
   );

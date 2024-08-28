@@ -47,7 +47,7 @@ export default function LoginScreen() {
         navigation.navigate("DenemeAnasayfa");
       } else {
         Alert.alert("Hata", data.message || "Giriş başarısız!");
-        console.log("sıkıntı var");
+        console.log(response.status);
       }
     } catch (error) {
       console.log("sıkıntı var:" + error);

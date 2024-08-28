@@ -43,7 +43,7 @@ const HeartButton2 = ({ contentId, contentType }) => {
 
   return (
     <TouchableOpacity onPress={toggleLike} style={styles.button}>
-      <Icon name="heart" size={25} color={liked ? 'red' : 'black'} />
+      <Icon name="heart" size={25} color={liked ? 'red' : 'white'} />
     </TouchableOpacity>
   );
 };
@@ -53,6 +53,8 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     padding: 10,
+    marginTop:0,
+    marginLeft:0,
   },
 });
 

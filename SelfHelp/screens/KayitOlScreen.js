@@ -32,10 +32,12 @@ export default function KayitOlScreen() {
     }
 
     try {
+      console.log(baseApi)
       const response = await axios.post(`${baseApi}/auth/register`, {
         email,
         password,
       })
+      
       setSuccess("Başarıyla kayıt oldunuz! Lütfen e-posta adresinize gönderilen doğrulama bağlantısına tıklayınız.")
       setError('')
       // Navigation to another screen if needed
@@ -43,7 +45,10 @@ export default function KayitOlScreen() {
     } catch (e) {
       setError(e.response?.data?.message || "Bir hata oluştu")
       setSuccess('')
+      console.log(baseApi)
+      console.log(e)
     }
+    
   }
 
   return (

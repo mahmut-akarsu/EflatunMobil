@@ -13,6 +13,7 @@ import { ScreenStackHeaderSearchBarView } from 'react-native-screens';
 import { FontAwesome } from '@expo/vector-icons';
 import BottomBar from './BottomBar';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useRoute } from '@react-navigation/native';
 
 
 
@@ -24,6 +25,7 @@ export default function AnaSayfaScreen() {
   const [isEditingUsername, setEditingUsername] = useState(false);
   const [isEditingEmail, setEditingEmail] = useState(false);
   const [isEditingPassword, setEditingPassword] = useState(false);
+  const route = useRoute(); // Geçerli rotayı alır
 
   const navigation = useNavigation();
   const [userData, setUserData] = useState({
@@ -212,7 +214,7 @@ export default function AnaSayfaScreen() {
           <View className="mt-2">
             <TouchableOpacity onPress={handleLogout}>
               <View className="flex-row">
-                <Image style={{ height: 35, width: 35, marginHorizontal: 23, marginTop: 15 }} source={require('../assets/logout.png')} />
+                <Image style={{ height: 35, width: 35, marginHorizontal: 23, marginTop: 15 }} source={require('../assets/icons/logout.png')} />
                 <Text style={{ marginHorizontal: -10, marginTop: 20, fontSize: 17 }}>Çıkış yap</Text>
               </View>
             </TouchableOpacity>
@@ -226,7 +228,7 @@ export default function AnaSayfaScreen() {
 
       {/*BOTTOM BAR*/}
       <View>
-        <BottomBar />
+        <BottomBar currentRoute={route.name}/>
       </View>
     </View>
 

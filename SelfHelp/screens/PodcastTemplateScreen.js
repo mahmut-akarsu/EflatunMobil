@@ -6,6 +6,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import BottomBar from './BottomBar';
 import { Audio } from 'expo-av';
+import HeartButton3 from './HeartButton3';
 import HeartButton2 from './HeartButton2';
 import { baseApi } from '../config';
 
@@ -136,7 +137,7 @@ export default function PodcastTemplateScreen() {
 
         <View style={{ flexDirection: 'row' }}>
           <Text style={styles.podcastTitle}>{podcast.title}</Text>
-          <HeartButton2 contentId={id} contentType="podcast" />
+          <HeartButton3 contentId={id} contentType="podcast" />
         </View>
 
         <View style={styles.progressContainer}>
@@ -146,9 +147,9 @@ export default function PodcastTemplateScreen() {
             onValueChange={handleSliderChange}
             minimumValue={0}
             maximumValue={1}
-            minimumTrackTintColor="#007bff"
+            minimumTrackTintColor="#afbf36"
             maximumTrackTintColor="#000000"
-            thumbTintColor="#007bff"
+            thumbTintColor="#afbf36"
           />
           <View style={styles.timeContainer}>
             <Text>{formatTime(currentTime)}</Text>
@@ -211,7 +212,7 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.15,
     elevation: 4,
     marginTop: -80,
-    marginHorizontal: 4,
+    marginHorizontal: 17,
     height: 250,
     width: 358,
     borderRadius: 10,
@@ -241,13 +242,14 @@ const styles = StyleSheet.create({
   timeContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    width: 340,
+    width: 310,
+    marginTop:-30,
   },
   controlsContainer: {
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
-    marginTop: -10,
+    marginTop: -5,
   },
   playButton: {
     width: 50,
@@ -260,10 +262,12 @@ const styles = StyleSheet.create({
   },
   descriptionText: {
     color: "black",
-    fontSize: 15,
-    paddingTop: 45,
+    fontSize: 16,
+    paddingTop: 40,
     marginHorizontal: 30,
     lineHeight: 22,
     marginBottom: 100,
+    textAlign:"center",
+    
   },
 });

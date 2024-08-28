@@ -14,12 +14,19 @@ import HeartButton3 from './HeartButton3';
 
 
 
-export default function BottomBar() {
+
+export default function BottomBar({ currentRoute }) {
   StatusBar.setHidden(true);
   const navigation = useNavigation();
   const [checked, setChecked] = React.useState('first');
   const [selectedId, setSelectedId] = useState();
-  
+  const [isPressed, setIsPressed] = useState(false);
+
+  const handlePress = () => {
+    setIsPressed(true);
+    navigation.navigate('DenemeAnasayfa');
+  };
+
   
   return(
     <View style={styles.container}>
@@ -34,15 +41,25 @@ export default function BottomBar() {
               {/*ANA SAYFA*/}
               <TouchableOpacity onPress={()=> navigation.navigate('DenemeAnasayfa')}>
                 <View style={{marginHorizontal:-6}}>
-                  <Image source={require('../assets/icons/home.png')} style={{width:30,height:30,marginHorizontal:20}}  />
-                  <Text style={{color:"white", marginRight:15,marginHorizontal:5}}>Ana Sayfa </Text>
+                  <Image source={require('../assets/icons/home.png')} style={[
+            styles.icon,
+            currentRoute === 'DenemeAnasayfa' ? styles.activeIcon : null
+          ]}
+                   />
+                  <Text  style={[
+        { marginRight: 15, marginHorizontal: 5 },
+        currentRoute === 'DenemeAnasayfa' ? { color: '#afbf36' } : { color: 'white' }
+      ]} >Ana Sayfa </Text>
                 </View>
               </TouchableOpacity>
               {/*FAVORİLER*/}
               <TouchableOpacity onPress={()=> navigation.navigate('Favoriler')}>
                 <View>
-                  <Image source={require('../assets/icons/heart.png')} style={{width:30,height:30,marginHorizontal:20}}  />
-                  <Text style={{color:"white",marginRight:15,marginHorizontal:3}}>Favorilerim </Text>
+                  <Image source={require('../assets/icons/heart.png')} style={[
+            styles.icon,
+            currentRoute === 'Favoriler' ? styles.activeIcon : null
+          ]}  />
+                  <Text style={[{marginRight:15,marginHorizontal:3}, currentRoute === 'Favoriler' ? { color: '#afbf36' } : { color: 'white' }]}>Favorilerim </Text>
                 </View>
               </TouchableOpacity>
               {/*CHATBOT*/}
@@ -62,8 +79,14 @@ export default function BottomBar() {
               {/*PROFİLİM*/}
               <TouchableOpacity onPress={()=> navigation.navigate('Profil')}>
                 <View style={{marginRight:-13}}>
-                  <Image source={require('../assets/icons/user.png')} style={{width:30,height:30,marginHorizontal:20}}/>
-                  <Text style={{color:"white",marginHorizontal:10}}>Profilim </Text>
+                  <Image source={require('../assets/icons/user.png')} style={[
+            styles.icon,
+            currentRoute === 'Profil' ? styles.activeIcon : null
+          ]} />
+                  <Text style={[
+        {  marginHorizontal: 10 },
+        currentRoute === 'Profil' ? { color: '#afbf36' } : { color: 'white' }
+      ]}>Profilim </Text>
                 </View>
               </TouchableOpacity>
             </View>
@@ -158,6 +181,14 @@ const styles = StyleSheet.create({
     marginHorizontal:9,
     marginBottom:10,
   
+  },
+  icon: {
+    width: 30,
+    height: 30,
+    marginHorizontal:20
+  },
+  activeIcon: {
+    tintColor: '#afbf36', // Aktif sayfanın ikonu için renk değişikliği
   },
   
   

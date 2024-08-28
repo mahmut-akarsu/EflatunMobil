@@ -11,7 +11,7 @@ const HeartButton2 = () => {
 
   return (
     <TouchableOpacity onPress={toggleLike} style={styles.button}>
-      <Icon name="heart" size={25} color={liked ? 'red' : 'white'} style={{marginHorizontal:40,marginTop:-210,marginRight:-70}} />
+      <Icon name="heart" size={25} color={liked ? 'red' : 'black'} style={{marginHorizontal:80,marginTop:0,marginRight:10}} />
     </TouchableOpacity>
   );
 };
