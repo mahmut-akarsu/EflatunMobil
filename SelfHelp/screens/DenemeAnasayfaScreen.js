@@ -7,6 +7,7 @@ import BottomBar from './BottomBar';
 import { baseApi } from '../config';
 import { useRoute } from '@react-navigation/native';
 
+
 export default function DenemeAnasayfaScreen() {
   StatusBar.setHidden(true);
   const navigation = useNavigation();

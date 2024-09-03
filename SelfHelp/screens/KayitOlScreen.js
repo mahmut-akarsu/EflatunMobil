@@ -30,6 +30,7 @@ export default function KayitOlScreen() {
       setError("Lütfen bir şifre girin")
       return
     }
+   
 
     try {
       console.log(baseApi)
@@ -45,6 +46,7 @@ export default function KayitOlScreen() {
     } catch (e) {
       setError(e.response?.data?.message || "Bir hata oluştu")
       setSuccess('')
+     
       console.log(baseApi)
       console.log(e)
     }
@@ -88,7 +90,7 @@ export default function KayitOlScreen() {
             </Svg>
             <View className="flex-1 bg-white px-8 pt-8" style={{ backgroundColor: laciColors.bg }}>
               <View className="form space-y-1">
-                <Text className="text-xl font-semibold text-black-700 py-1" style={{ color: yesilColors.bg, fontSize: 25, fontWeight: "normal", marginTop: -40 }}>Sign Up</Text>
+                <Text className="text-xl font-semibold text-black-700 py-1" style={{ color: yesilColors.bg, fontSize: 25, fontWeight: "normal", marginTop: -40 }}>Üye Ol</Text>
                 <Text className="text-white-700 ml-1" style={{ color: "white" }}>Email</Text>
                 <TextInput
                   className="p-2.5 text-white-700 rounded-full mb-3 border"
@@ -98,7 +100,7 @@ export default function KayitOlScreen() {
                   placeholder='martin_eden@domain.com'
                   placeholderTextColor="#778899"
                 />
-                <Text className="text-gray-700 ml-1" style={{ color: "white" }}>Password</Text>
+                <Text className="text-gray-700 ml-1" style={{ color: "white" }}>Şifre</Text>
                 <TextInput
                   className="p-2.5 text-gray-700 rounded-full mb-7 border"
                   style={{ color: "white", borderColor: "#294666" }}
@@ -108,7 +110,7 @@ export default function KayitOlScreen() {
                 />
                 <TouchableOpacity
                   className="py-3 rounded-full" style={{
-                    marginBottom: -20,
+                    
                     elevation: 5,
                     shadowColor: '#afbf36',
                     shadowOffset: { width: 3, height: 6 },
@@ -126,19 +128,23 @@ export default function KayitOlScreen() {
                     end={{ x: 1, y: 0.5 }}
                     style={{ borderRadius: 9999, height: 50, marginTop: -10 }}>
                     <Text className="font-xl text-center text-white" style={{ fontSize: 20, marginTop: 10 }}>
-                      Create Account
+                      Hesap Oluştur
                     </Text>
                   </LinearGradient>
                 </TouchableOpacity>
+                <View >
                 {error ? (
-                  <Text style={{ color: 'red', textAlign: 'center', marginTop: 10 }}>{error}</Text>
+                  <Text style={{ color: 'darkred', textAlign: 'center',padding:10,  borderWidth: 2, marginTop:10,borderColor: 'darkred',width:250,marginHorizontal:35,backgroundColor:"#996666",borderRadius: 20,}}><Image source={require('../assets/icons/warning.png')} style={{ marginRight: 8 }}
+                  className="w-5 h-5"/>{error}</Text>
                 ) : null}
                 {success ? (
-                  <Text style={{ color: 'green', textAlign: 'center', marginTop: 10 }}>{success}</Text>
+                  <Text style={{ color: 'darkgreen', textAlign: 'center',padding:10,  borderWidth: 2, marginTop:10,borderColor: 'darkgreen',width:350,marginHorizontal:-10,backgroundColor:"#EEE8AA",borderRadius: 20,}}><Image source={require('../assets/icons/check-mark.png')} 
+                  className="w-5 h-5"/>{success}</Text>
                 ) : null}
+                </View>
               </View>
               <Text className="text-xl text-gray-500 text-center py-5">
-                or sign up with
+                farklı sosyal ağlar ile üyo ol
               </Text>
               <View className="flex-row justify-center space-x-12">
                 <TouchableOpacity className="p-2 rounded-2xl">
@@ -178,6 +184,8 @@ const styles = StyleSheet.create({
     height: 550,
 
   },
+  
+  
 
 })
 

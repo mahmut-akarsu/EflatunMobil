@@ -13,8 +13,8 @@ export default function WelcomeScreen() {
           <View>
             <Image source={require('../assets/images/welcome.jpg')} 
               style={{width: 400, height: 550, marginTop:-140,marginLeft:-7}} />
-            <Text className=" text-center font-semibold  py-1 " style={{color: "black", fontSize:20,marginTop:-40}}> LOREM İPSUM DOLOR</Text>
-            <Text className="  text-center py-9 ml-0 " style={{marginBottom:15, fontSize:15}}>Lorem ipsum dolor sit amet, consectetur,</Text>
+            <Text className=" text-center font-semibold  py-1 " style={{color: "black", fontSize:20,marginTop:30,padding:35,marginBottom:30,}}> Kişisel gelişiminiz için dijital rehberiniz</Text>
+            
           </View>
           <View>
             <TouchableOpacity  onPress={()=> navigation.navigate('Login')}
@@ -33,16 +33,16 @@ export default function WelcomeScreen() {
               colors={['#afbf36', '#555d1b']} // Soldan sağa doğru geçiş yapılacak renkler
               start={{ x: 0, y: 0.5 }}
               end={{ x: 1, y: 0.5 }}
-              style={{borderRadius: 9999, height:60,marginTop:-25}}>
-                <Text className="  font-xl  text-center text-white" style={{fontSize:20,marginTop:14}}> 
-                  GET STARTED
+              style={{borderRadius: 9999, height:60,marginTop:-20}}>
+                <Text className="  font-xl  text-center text-white" style={{fontSize:20,marginTop:14,fontWeight:"bold"}}> 
+                  Yolculuğumuza Başlayalım
                 </Text>
             </LinearGradient>
             </TouchableOpacity>
           <View  className="flex-row justify-center">
             <Image  source={require('../assets/images/uygulama.png')} 
             className="flex-row justify-center"
-            style={{width: 500, height: 300, marginTop:-105,marginLeft:15}} />
+            style={{width: 500, height: 300, marginTop:-65,marginLeft:15}} />
           </View>
         </View>
     </View>

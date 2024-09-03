@@ -19,7 +19,7 @@ export default function LoginScreen() {
 
   const handleSignIn = async () => {
     if (!email || !password) {
-      Alert.alert("Hata", "Email ve şifre alanları boş bırakılamaz!");
+      Alert.alert("Hata", "Email ve şifre alanları boş bırakılamaz! Lütfen bu alanlari doldurarak tekrar deneyiniz.");
       return;
     }
 
@@ -43,7 +43,7 @@ export default function LoginScreen() {
         //emaili al
         await AsyncStorage.setItem('email', email);
 
-        Alert.alert("Başarılı", "Giriş başarılı!");
+        
         navigation.navigate("DenemeAnasayfa");
       } else {
         Alert.alert("Hata", data.message || "Giriş başarısız!");
@@ -94,22 +94,22 @@ export default function LoginScreen() {
                 d="M0,160L48,165.3C96,171,192,181,288,208C384,235,480,277,576,293.3C672,309,768,299,864,266.7C960,235,1056,181,1152,165.3C1248,149,1344,171,1392,181.3L1440,192L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z" />
             </Svg>
             <View className="px-8">
-              <Text className=" text-xl font-semibold font-bold py-1 " style={{ color: yesilColors.bg, fontSize: 25, fontWeight: "normal", marginBottom: 5, }}> Sign In </Text>
+              <Text className=" text-xl font-semibold font-bold py-1 " style={{ color: yesilColors.bg, fontSize: 25, fontWeight: "normal", marginBottom: 5, }}> Giriş Yap </Text>
               <View className="form space-y-2">
-                <Text className=" ml-1" style={{ color: "white" }}> Email </Text>
+                <Text className=" ml-1" style={{ color: "white" }}> E-posta </Text>
                 <TextInput
-                  className="p-2.5 bg-gray-100  rounded-full mb-3 border " style={{ backgroundColor: laciColors.bg, borderColor: "#294666", }}
+                  className="p-2.5 bg-gray-100  rounded-full mb-3 border " style={{ backgroundColor: laciColors.bg, borderColor: "#294666",color:"white" }}
                   placeholder="martin_eden"
                   placeholderTextColor="#778899"
                   value={email}
                   onChangeText={setEmail}
                 />
                 <TouchableOpacity onPress={() => navigation.navigate("Forgot")} className="flex mt-7">
-                  <Text className=" text-right" style={{ color: "white", textDecorationLine: 'underline', marginBottom: -20, marginTop: -4 }}>Forgot?</Text>
+                  <Text className=" text-right" style={{ color: "white", textDecorationLine: 'underline', marginBottom: -20, marginTop: -4 }}>Şifremi Unuttum?</Text>
                 </TouchableOpacity>
-                <Text className="text-gray-700 ml-1" style={{ color: "white" }}>Password</Text>
+                <Text className="text-gray-700 ml-1" style={{ color: "white" }}>Şifre</Text>
                 <TextInput
-                  className="p-2.5 bg-gray-100  rounded-full border " style={{ backgroundColor: laciColors.bg, marginBottom: 20, borderColor: "#294666" }}
+                  className="p-2.5 bg-gray-100  rounded-full border " style={{ backgroundColor: laciColors.bg, marginBottom: 20, borderColor: "#294666",color:"white" }}
                   secureTextEntry
                   placeholder=""
                   placeholderTextColor="#778899"
@@ -134,16 +134,17 @@ export default function LoginScreen() {
                     end={{ x: 1, y: 0.5 }}
                     style={{ borderRadius: 9999, height: 50, marginTop: -7 }}>
                     <Text className="text-xl  text-center text-white" style={{ marginTop: 9, marginLeft: -10 }}>
-                      Sign In
+                      Giriş Yap
                     </Text>
                   </LinearGradient>
                 </TouchableOpacity >
+                
                 <View className="flex-row justify-center mt-7 " >
                   <Text className=" " style={{ color: "white", marginTop: 25 }}>
-                    Don't have an account?
+                    Henüz hesabın yok mu?
                   </Text>
                   <TouchableOpacity onPress={() => navigation.navigate("KayitOl")}>
-                    <Text className="font-semibold " style={{ color: "white", textDecorationLine: 'underline', marginBottom: 40, marginTop: 25 }}>Sign Up</Text>
+                    <Text className="font-semibold " style={{ color: "white", textDecorationLine: 'underline', marginBottom: 40, marginTop: 25 }}>Üye ol</Text>
                   </TouchableOpacity>
                 </View>
                 <View className="flex-row justify-center space-x-12" >
