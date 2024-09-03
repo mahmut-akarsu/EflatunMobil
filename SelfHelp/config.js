@@ -1,2 +1,2 @@
-import { BASE_API1 } from '@env';
-export const baseApi = BASE_API1;
+import { BASE_API } from '@env';
+export const baseApi = BASE_API;

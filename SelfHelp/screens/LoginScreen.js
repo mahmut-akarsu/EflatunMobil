@@ -51,6 +51,7 @@ export default function LoginScreen() {
       }
     } catch (error) {
       console.log("sıkıntı var:" + error);
+      console.log(baseApi);
       Alert.alert("Hata", "Bir hata oluştu. Lütfen tekrar deneyin.");
     }
   };
